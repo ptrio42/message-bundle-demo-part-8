@@ -1,0 +1,4 @@
+ptrio_message:
+    firebase:
+        api_url: 'https://fcm.googleapis.com'
+        server_key: 'AAAAM3JBEFw:APA91b...'

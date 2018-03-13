@@ -1,0 +1,34 @@
+services:
+    ptrio_message.firebase_client:
+        class: 'App\Ptrio\MessageBundle\Client\FirebaseClient'
+        arguments:
+            - '%ptrio_message.firebase.api_url%'
+            - '%ptrio_message.firebase.server_key%'
+
+    ptrio_message.send_message_command:
+        class: 'App\Ptrio\MessageBundle\Command\SendMessageCommand'
+        arguments:
+            - '@ptrio_message.firebase_client'
+            - '@ptrio_message.device_manager'
+        tags:
+            - { name: 'console.command' }
+
+    ptrio_message.device_manager:
+        class: 'App\Ptrio\MessageBundle\Doctrine\DeviceManager'
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - 'App\Ptrio\MessageBundle\Entity\Device'
+
+    ptrio_message.add_message_command:
+        class: 'App\Ptrio\MessageBundle\Command\AddDeviceCommand'
+        arguments:
+            - '@ptrio_message.device_manager'
+        tags:
+            - { name: 'console.command' }
+
+    ptrio_message.remove_message_command:
+        class: 'App\Ptrio\MessageBundle\Command\RemoveDeviceCommand'
+        arguments:
+            - '@ptrio_message.device_manager'
+        tags:
+            - { name: 'console.command' }
