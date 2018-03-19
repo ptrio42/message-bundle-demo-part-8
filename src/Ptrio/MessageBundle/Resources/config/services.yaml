@@ -10,6 +10,7 @@ services:
         arguments:
             - '@ptrio_message.firebase_client'
             - '@ptrio_message.device_manager'
+            - '@ptrio_message.message_manager'
         tags:
             - { name: 'console.command' }
 
