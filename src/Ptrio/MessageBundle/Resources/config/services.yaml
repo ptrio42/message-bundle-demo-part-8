@@ -10,6 +10,7 @@ services:
         arguments:
             - '@ptrio_message.firebase_client'
             - '@ptrio_message.device_manager'
+            - '@ptrio_message.message_manager'
         tags:
             - { name: 'console.command' }
 
@@ -29,6 +30,20 @@ services:
     ptrio_message.remove_message_command:
         class: 'App\Ptrio\MessageBundle\Command\RemoveDeviceCommand'
         arguments:
+            - '@ptrio_message.device_manager'
+        tags:
+            - { name: 'console.command' }
+
+    ptrio_message.message_manager:
+        class: 'App\Ptrio\MessageBundle\Doctrine\MessageManager'
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - 'App\Ptrio\MessageBundle\Entity\Message'
+
+    ptrio_message.list_device_messages_command:
+        class: 'App\Ptrio\MessageBundle\Command\ListDeviceMessagesCommand'
+        arguments:
+            - '@ptrio_message.message_manager'
             - '@ptrio_message.device_manager'
         tags:
             - { name: 'console.command' }
