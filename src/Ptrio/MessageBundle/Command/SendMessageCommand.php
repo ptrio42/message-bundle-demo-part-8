@@ -4,6 +4,7 @@ namespace App\Ptrio\MessageBundle\Command;
 
 use App\Ptrio\MessageBundle\Client\ClientInterface;
 use App\Ptrio\MessageBundle\Model\DeviceManagerInterface;
+use App\Ptrio\MessageBundle\Model\MessageManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -13,13 +14,19 @@ class SendMessageCommand extends Command
 {
     private $client;
     private $deviceManager;
+    private $messageManager;
 
     protected static $defaultName = 'ptrio:message:send-message';
 
-    public function __construct(ClientInterface $client, DeviceManagerInterface $deviceManager)
+    public function __construct(
+        ClientInterface $client,
+        DeviceManagerInterface $deviceManager,
+        MessageManagerInterface $messageManager
+    )
     {
         $this->client = $client;
         $this->deviceManager = $deviceManager;
+        $this->messageManager = $messageManager;
 
         parent::__construct();
     }
@@ -39,6 +46,11 @@ class SendMessageCommand extends Command
         $recipient = $input->getArgument('recipient');
 
         if ($device = $this->deviceManager->findDeviceByName($recipient)) {
+            $message = $this->messageManager->createMessage();
+            $message->setBody($messageBody);
+            $message->setDevice($device);
+            $message->setSentAt(new \DateTime('now'));
+            $this->messageManager->updateMessage($message);
             $response = $this->client->sendMessage($messageBody, $device->getToken());
 
             $output->writeln('Response: '.$response);
