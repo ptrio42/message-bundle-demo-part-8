@@ -47,3 +47,9 @@ services:
             - '@ptrio_message.device_manager'
         tags:
             - { name: 'console.command' }
+
+    ptrio_message.device_repository:
+        class: 'App\Ptrio\MessageBundle\Repository\DeviceRepository'
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - 'App\Ptrio\MessageBundle\Entity\Device'
