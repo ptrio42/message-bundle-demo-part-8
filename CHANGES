@@ -1,0 +1,22 @@
+Version 0.1.0
+ - Merge branch 'sending-a-message-to-multiple-devices-feature' into dev
+ - Add ptrio_message.device_repository service argument to ptrio_message.device_manager service definition.
+ - Add DeviceInterface import to MessageManager class.
+ - Extend SendMessageCommand class.
+ - Separate out a device entity class reference to a container parameter.
+ - Update services.yaml file.
+ - Update DeviceManager class.
+ - Extend DeviceManagerInterface.
+ - Add DeviceRepository class.
+ - Create DeviceRepository interface.
+ - Merge branch 'message-service-feature' into dev
+ - Update SendMessageCommand class.
+ - Update service configuration file.
+ - Create a ListMessageMessagesCommand class.
+ - Create a concrete class for a message manager service.
+ - Create an abstraction layer for a message manager service.
+ - Create a message entity class.
+ - Create an abstraction layer for a message entity.
+ - Create README.md
+ - Initial commit.
+
