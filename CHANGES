@@ -1,3 +1,6 @@
+Version 1.2.0:
+
+
 Version 0.1.0
  - Merge branch 'sending-a-message-to-multiple-devices-feature' into dev
  - Add ptrio_message.device_repository service argument to ptrio_message.device_manager service definition.
