@@ -1,3 +1,6 @@
+parameters:
+    ptrio_message.model.device.class: 'App\Ptrio\MessageBundle\Entity\Device'
+
 services:
     ptrio_message.firebase_client:
         class: 'App\Ptrio\MessageBundle\Client\FirebaseClient'
@@ -18,7 +21,8 @@ services:
         class: 'App\Ptrio\MessageBundle\Doctrine\DeviceManager'
         arguments:
             - '@doctrine.orm.entity_manager'
-            - 'App\Ptrio\MessageBundle\Entity\Device'
+            - '%ptrio_message.model.device.class%'
+            - '@ptrio_message.device_repository'
 
     ptrio_message.add_message_command:
         class: 'App\Ptrio\MessageBundle\Command\AddDeviceCommand'
@@ -47,3 +51,9 @@ services:
             - '@ptrio_message.device_manager'
         tags:
             - { name: 'console.command' }
+
+    ptrio_message.device_repository:
+        class: 'App\Ptrio\MessageBundle\Repository\DeviceRepository'
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '%ptrio_message.model.device.class%'

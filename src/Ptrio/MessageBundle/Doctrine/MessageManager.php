@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Ptrio\MessageBundle\Doctrine;
+use App\Ptrio\MessageBundle\Model\DeviceInterface;
 use App\Ptrio\MessageBundle\Model\MessageInterface;
 use App\Ptrio\MessageBundle\Model\MessageManager as BaseMessageManager;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -52,7 +53,7 @@ class MessageManager extends BaseMessageManager
     {
         return $this->class;
     }
-    
+
     /**
      * @param DeviceInterface $device
      * @return array
