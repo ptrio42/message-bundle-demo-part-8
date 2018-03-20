@@ -15,4 +15,7 @@ interface DeviceManagerInterface
     public function findDeviceByName(string $name);
 
     public function findDeviceBy(array $criteria);
+
+    public function findDevicesByNames(array $deviceNames): array;
+
 }

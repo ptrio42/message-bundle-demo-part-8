@@ -36,26 +36,26 @@ class SendMessageCommand extends Command
         $this
             ->setDefinition([
             new InputArgument('body', InputArgument::REQUIRED),
-            new InputArgument('recipient', InputArgument::REQUIRED),
+            new InputArgument('device-names', InputArgument::IS_ARRAY),
         ]);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $messageBody = $input->getArgument('body');
-        $recipient = $input->getArgument('recipient');
+        $deviceNames = $input->getArgument('device-names');
 
-        if ($device = $this->deviceManager->findDeviceByName($recipient)) {
+        $devices = $this->deviceManager->findDevicesByNames($deviceNames);
+        foreach ($devices as $device) {
+            /** @var DeviceInterface $device */
             $message = $this->messageManager->createMessage();
             $message->setBody($messageBody);
             $message->setDevice($device);
             $message->setSentAt(new \DateTime('now'));
             $this->messageManager->updateMessage($message);
             $response = $this->client->sendMessage($messageBody, $device->getToken());
-
+            $output->writeln('Message successfully sent do device `'.$device->getName().'`.');
             $output->writeln('Response: '.$response);
-        } else {
-            $output->writeln('No device found!');
         }
     }
 }
