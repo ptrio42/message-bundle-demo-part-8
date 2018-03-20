@@ -22,6 +22,7 @@ services:
         arguments:
             - '@doctrine.orm.entity_manager'
             - '%ptrio_message.model.device.class%'
+            - '@ptrio_message.device_repository'
 
     ptrio_message.add_message_command:
         class: 'App\Ptrio\MessageBundle\Command\AddDeviceCommand'
