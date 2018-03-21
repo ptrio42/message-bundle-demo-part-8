@@ -74,7 +74,6 @@ abstract class User implements UserInterface
      */
     public function getPassword(): void
     {
-        return null;
     }
 
     /**
@@ -82,7 +81,6 @@ abstract class User implements UserInterface
      */
     public function getSalt(): void
     {
-        return null;
     }
 
     /**
@@ -90,6 +88,5 @@ abstract class User implements UserInterface
      */
     public function eraseCredentials(): void
     {
-        return null;
     }
 }
