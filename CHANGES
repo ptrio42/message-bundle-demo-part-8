@@ -1,3 +1,16 @@
+Version 1.3.0:
+ - Merge branch 'rest-api-feature' into dev
+ - Add translations.
+ - Update project dependencies.
+ - Update services definitions.
+ - Enable FOSRestBundle.
+ - Create MessageBundle routes.
+ - Create DeviceController class.
+ - Add FOSRestBundle configuration.
+ - Add validation to Device entity; assign defaults to Device:: and Device::.
+ - Create DeviceType class.
+ - Merge branch 'release-1.2.0' into dev
+
 Version 1.2.0:
 
 
