@@ -1,15 +1,14 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: piotr.czarnoleski
- * Date: 21/03/2018
- * Time: 15:26
- */
 
 namespace App\Ptrio\MessageBundle\Util;
 
-
-class TokenGenerator
+class TokenGenerator implements TokenGeneratorInterface
 {
-
+    /**
+     * {@inheritdoc}
+     */
+    public function generateToken(): string
+    {
+        return rtrim(strtr(base64_encode(random_bytes(32)), '+/', '-_'), '=');
+    }
 }
