@@ -1,15 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: piotr.czarnoleski
- * Date: 21/03/2018
- * Time: 14:03
- */
 
 namespace App\Ptrio\MessageBundle\Security\Core\User;
 
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\UserProviderInterface as BaseUserProviderInterface;
 
-class UserProviderInterface
+interface UserProviderInterface extends BaseUserProviderInterface
 {
-
+    /**
+     * @param string $apiKey
+     * @return null|UserInterface
+     */
+    public function findUser(string $apiKey): ?UserInterface;
 }
