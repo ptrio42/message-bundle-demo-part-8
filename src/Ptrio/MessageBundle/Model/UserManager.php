@@ -22,4 +22,12 @@ abstract class UserManager implements UserManagerInterface
     {
         return $this->findUserBy(['username' => $username]);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findUserByApiKey(string $apiKey): ?UserInterface
+    {
+        return $this->findUserBy(['apiKey' => $apiKey]);
+    }
 }
