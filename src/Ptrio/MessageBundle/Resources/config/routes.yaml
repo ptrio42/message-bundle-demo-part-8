@@ -1,0 +1,4 @@
+device:
+    type: rest
+    prefix: /
+    resource: 'ptrio_message.device_controller'
