@@ -6,9 +6,8 @@ use App\Ptrio\MessageBundle\Model\UserManagerInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\User\UserProviderInterface;
 
-class EntityUserProvider implements UserProviderInterface
+class ApiKeyUserProvider implements UserProviderInterface
 {
     /**
      * @var UserManagerInterface
@@ -29,13 +28,13 @@ class EntityUserProvider implements UserProviderInterface
      */
     public function loadUserByUsername($username)
     {
-        $user = $this->userManager->findUserByUsername($username);
+        $user = $this->findUser($username);
 
         if ($user instanceof UserInterface) {
             return $user;
         }
 
-        throw new UsernameNotFoundException('User cannot be found for a given username.');
+        throw new UsernameNotFoundException('User cannot be found for a given api key.');
     }
 
     /**
@@ -56,5 +55,13 @@ class EntityUserProvider implements UserProviderInterface
     public function supportsClass($class)
     {
         return $this->userManager->getClass() === $class;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findUser(string $apiKey): ?UserInterface
+    {
+        return $this->userManager->findUserByApiKey($apiKey);
     }
 }
