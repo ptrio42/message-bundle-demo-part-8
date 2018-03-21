@@ -79,7 +79,7 @@ services:
             - '@doctrine.orm.entity_manager'
             - 'App\Ptrio\MessageBundle\Entity\User'
 
-    ptrio_message.user_provider:
-        class: 'App\Ptrio\MessageBundle\Security\Core\User\EntityUserProvider'
+    ptrio_message.user_provider.api_key:
+        class: 'App\Ptrio\MessageBundle\Security\Core\User\ApiKeyUserProvider'
         arguments:
             - '@ptrio_message.user_manager'
