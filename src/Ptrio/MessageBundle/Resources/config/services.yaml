@@ -78,3 +78,8 @@ services:
         arguments:
             - '@doctrine.orm.entity_manager'
             - 'App\Ptrio\MessageBundle\Entity\User'
+
+    ptrio_message.user_provider:
+        class: 'App\Ptrio\MessageBundle\Security\Core\User\EntityUserProvider'
+        arguments:
+            - '@ptrio_message.user_manager'
