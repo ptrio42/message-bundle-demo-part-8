@@ -34,6 +34,12 @@ interface UserManagerInterface
     public function findUserByUsername(string $username): ?UserInterface;
 
     /**
+     * @param string $apiKey
+     * @return null|UserInterface
+     */
+    public function findUserByApiKey(string $apiKey): ?UserInterface;
+
+    /**
      * @return string
      */
     public function getClass(): string;
