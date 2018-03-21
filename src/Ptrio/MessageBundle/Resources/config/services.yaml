@@ -72,3 +72,9 @@ services:
             - '@form.factory'
         tags:
             - { name: controller.service_arguments }
+
+    ptrio_message.user_manager:
+        class: 'App\Ptrio\MessageBundle\Doctrine\UserManager'
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - 'App\Ptrio\MessageBundle\Entity\User'
