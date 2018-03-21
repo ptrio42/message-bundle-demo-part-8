@@ -57,3 +57,18 @@ services:
         arguments:
             - '@doctrine.orm.entity_manager'
             - '%ptrio_message.model.device.class%'
+
+    ptrio_message.device_type:
+        class: 'App\Ptrio\MessageBundle\Form\Type\DeviceType'
+        arguments:
+            - '%ptrio_message.model.device.class%'
+        tags:
+            - { name: form.type, alias: 'ptrio_message_device_type' }
+
+    ptrio_message.device_controller:
+        class: 'App\Ptrio\MessageBundle\Controller\DeviceController'
+        arguments:
+            - '@ptrio_message.device_manager'
+            - '@form.factory'
+        tags:
+            - { name: controller.service_arguments }
