@@ -1,3 +1,34 @@
+Version 1.4.0:
+ - Merge branch 'authorization-system-feature' into dev
+ - Add ptrio_message.add_user_command and ptrio_message.remove_user_command definitions to services.yaml
+ - Reference new UserInterface interface.
+ - Implement UserInterface.
+ - Extend UserInterface.
+ - Set device name and token arguments as optional.
+ - Create RemoveUserCommand class.
+ - Create AddUserCommand class.
+ - Add TokenGenerator class.
+ - Create TokenGeneratorInteface.
+ - Update composer.json
+ - Configure firewall.
+ - Enable SymfonySecurityBundle.
+ - Create TokenAuthenticator.
+ - Add service definitions to services.yaml.
+ - Add ApiKeyUserProvider class.
+ - Create UserProviderInterface.
+ - Extend UserManager.
+ - Extend UserManagerInterface.
+ - Add ptrio_message.user_provider service definition.
+ - Create EntityUserProvider.
+ - Add ptrio_message.user_manager service definition.
+ - Create UserManager concrete class.
+ - Create base UserManager class.
+ - Create UserManagerInterface.
+ - Create base User class.
+ - Create user entity class.
+ - Create base user class.
+ - Merge branch 'release-1.3.0' into dev
+
 Version 1.3.0:
  - Merge branch 'rest-api-feature' into dev
  - Add translations.
