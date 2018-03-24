@@ -2,8 +2,6 @@
 
 namespace App\Ptrio\MessageBundle\Model;
 
-use Symfony\Component\Security\Core\User\UserInterface;
-
 abstract class UserManager implements UserManagerInterface
 {
     /**

@@ -2,9 +2,9 @@
 
 namespace App\Ptrio\MessageBundle\Doctrine;
 
+use App\Ptrio\MessageBundle\Model\UserInterface;
 use App\Ptrio\MessageBundle\Model\UserManager as BaseUserManager;
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 class UserManager extends BaseUserManager
 {
