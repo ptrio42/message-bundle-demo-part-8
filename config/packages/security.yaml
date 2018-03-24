@@ -1,0 +1,13 @@
+security:
+    providers:
+        user_provider:
+            id: ptrio_message.user_provider.api_key
+
+    firewalls:
+        api:
+            pattern: ^/api
+            stateless: true
+
+            guard:
+                authenticators:
+                    - 'App\Ptrio\MessageBundle\Security\Guard\TokenAuthenticator'

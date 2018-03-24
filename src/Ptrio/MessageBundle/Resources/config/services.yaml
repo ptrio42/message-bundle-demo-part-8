@@ -72,3 +72,32 @@ services:
             - '@form.factory'
         tags:
             - { name: controller.service_arguments }
+
+    ptrio_message.user_manager:
+        class: 'App\Ptrio\MessageBundle\Doctrine\UserManager'
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - 'App\Ptrio\MessageBundle\Entity\User'
+
+    ptrio_message.user_provider.api_key:
+        class: 'App\Ptrio\MessageBundle\Security\Core\User\ApiKeyUserProvider'
+        arguments:
+            - '@ptrio_message.user_manager'
+
+    ptrio_message.util.token_generator:
+        class: 'App\Ptrio\MessageBundle\Util\TokenGenerator'
+
+    ptrio_message.add_user_command:
+        class: 'App\Ptrio\MessageBundle\Command\AddUserCommand'
+        arguments:
+            - '@ptrio_message.user_manager'
+            - '@ptrio_message.util.token_generator'
+        tags:
+            - { name: console.command }
+
+    ptrio_message.remove_user_command:
+        class: 'App\Ptrio\MessageBundle\Command\RemoveUserCommand'
+        arguments:
+            - '@ptrio_message.user_manager'
+        tags:
+            - { name: console.command }
