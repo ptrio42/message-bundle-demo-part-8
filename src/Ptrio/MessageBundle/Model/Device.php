@@ -20,7 +20,7 @@ abstract class Device implements DeviceInterface
         return $this->name;
     }
 
-    public function setName(string $name)
+    public function setName(?string $name)
     {
         $this->name = $name;
     }
@@ -30,7 +30,7 @@ abstract class Device implements DeviceInterface
         return $this->token;
     }
 
-    public function setToken(string $token)
+    public function setToken(?string $token)
     {
         $this->token = $token;
     }
