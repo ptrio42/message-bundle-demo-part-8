@@ -2,3 +2,12 @@ ptrio_message:
     firebase:
         api_url: 'https://fcm.googleapis.com'
         server_key: 'AAAAM3JBEFw:APA91b...'
+    device:
+        classes:
+            model: 'App\Ptrio\MessageBundle\Entity\Device'
+    message:
+        classes:
+            model: 'App\Ptrio\MessageBundle\Entity\Message'
+    user:
+        classes:
+            model: 'App\Ptrio\MessageBundle\Entity\User'
