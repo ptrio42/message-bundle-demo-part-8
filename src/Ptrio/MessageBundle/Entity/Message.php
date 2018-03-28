@@ -21,7 +21,7 @@ class Message extends BaseMessage
      */
     protected $body;
     /**
-     * @ORM\ManyToOne(targetEntity="Device")
+     * @ORM\ManyToOne(targetEntity="App\Ptrio\MessageBundle\Model\DeviceInterface")
      * @ORM\JoinColumn(name="device_id", referencedColumnName="id")
      */
     protected $device;
