@@ -104,14 +104,6 @@ services:
         tags:
             - { name: security.voter }
 
-    ptrio_message.message_controller:
-        class: 'App\Ptrio\MessageBundle\Controller\MessageController'
-        arguments:
-            - '@ptrio_message.device_manager'
-            - '@ptrio_message.message_manager'
-        tags:
-            - { name: controller.service_arguments }
-
     ptrio_message.add_device_command:
         class: 'App\Ptrio\MessageBundle\Command\AddDeviceCommand'
         arguments:
