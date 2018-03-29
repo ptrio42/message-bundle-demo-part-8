@@ -1,3 +1,29 @@
+Version 1.5.0:
+ - Merge branch 'device-voter-feature' into dev
+ - Adjust services.yaml file.
+ - Update AddDeviceCommand command class.
+ - Update FOSRestBundle configuration.
+ - Update service configuration.
+ - Extend DeviceController class.
+ - Create DeviceVoter class.
+ - Update PtrioMessageExtension class.
+ - Add ORM mapping.
+ - Implement Device::getUser() and Device::setUser() methods.
+ - Extend DeviceInterface.
+ - Merge branch 'hotfix-1.4.1' into dev
+ - Reference an interface in Message entity relation mapping.
+ - Update service configuration in services.yaml file.
+ - Provide bundle configuration.
+ - Load extended configuration in PtrioMessageExtension.
+ - Extend configuration tree.
+ - Merge branch 'release-1.4.0' into dev
+ - Merge pull request #1 from ptrio42/release-1.4.0
+ - Merge branch 'release-1.3.0'
+ - Merge branch 'release-1.2.0'
+ - Merge branch 'master' of github.com:ptrio42/message-bundle-demo-part-1
+ - Merge branch 'message-service-feature'
+ - Initial commit
+
 Version 1.4.0:
  - Merge branch 'authorization-system-feature' into dev
  - Add ptrio_message.add_user_command and ptrio_message.remove_user_command definitions to services.yaml
