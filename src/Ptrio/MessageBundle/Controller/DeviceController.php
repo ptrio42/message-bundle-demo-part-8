@@ -43,6 +43,7 @@ class DeviceController extends FOSRestController
     public function getDeviceAction(string $deviceName): Response
     {
         if ($device = $this->deviceManager->findDeviceByName($deviceName)) {
+            $this->denyAccessUnlessGranted(null, $device);
             $view = $this->view($device, 200);
         } else {
             $view = $this->view(null, 404);
@@ -64,6 +65,7 @@ class DeviceController extends FOSRestController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $device = $form->getData();
+            $device->setUser($this->getUser());
             $this->deviceManager->updateDevice($device);
 
             $view = $this->view(null, 204);
@@ -82,6 +84,7 @@ class DeviceController extends FOSRestController
     public function deleteDeviceAction(string $deviceName): Response
     {
         if ($device = $this->deviceManager->findDeviceByName($deviceName)) {
+            $this->denyAccessUnlessGranted(null, $device);
             $this->deviceManager->removeDevice($device);
             $view = $this->view(null, 204);
         } else {

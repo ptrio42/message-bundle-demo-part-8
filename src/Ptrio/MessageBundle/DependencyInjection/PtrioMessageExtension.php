@@ -36,6 +36,7 @@ class PtrioMessageExtension extends Extension implements PrependExtensionInterfa
                     'orm' => [
                         'resolve_target_entities' => [
                             $config['device']['classes']['interface'] => $config['device']['classes']['model'],
+                            $config['user']['classes']['interface'] => $config['user']['classes']['model'],
                         ],
                     ],
                 ])
@@ -50,7 +51,6 @@ class PtrioMessageExtension extends Extension implements PrependExtensionInterfa
     private function loadDevice(array $config, ContainerBuilder $container)
     {
         $container->setParameter('ptrio_message.model.device.class', $config['classes']['model']);
-//        $container->setParameter('ptrio_message.interface.device.class', $config['classes']['interface']);
     }
 
     /**
@@ -70,6 +70,5 @@ class PtrioMessageExtension extends Extension implements PrependExtensionInterfa
     private function loadUser(array $config, ContainerBuilder $container)
     {
         $container->setParameter('ptrio_message.model.user.class', $config['classes']['model']);
-        $container->setParameter('ptrio_message.interface.user.class', $config['classes']['interface']);
     }
 }
