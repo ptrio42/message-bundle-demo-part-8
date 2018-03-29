@@ -29,4 +29,10 @@ class Device extends BaseDevice
      * @Assert\NotBlank()
      */
     protected $token = '';
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Ptrio\MessageBundle\Model\UserInterface")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    protected $user;
 }
