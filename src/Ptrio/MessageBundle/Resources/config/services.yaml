@@ -5,6 +5,13 @@ services:
             - '%ptrio_message.firebase.api_url%'
             - '%ptrio_message.firebase.server_key%'
 
+    ptrio_message.device_voter:
+        class: 'App\Ptrio\MessageBundle\Security\Voter\DeviceVoter'
+        arguments:
+            - '@security.access.decision_manager'
+        tags:
+            - { name: security.voter }
+
     ptrio_message.send_message_command:
         class: 'App\Ptrio\MessageBundle\Command\SendMessageCommand'
         arguments:
@@ -99,15 +106,24 @@ services:
         tags:
             - { name: console.command }
 
-    ptrio_message.device_voter:
-        class: 'App\Ptrio\MessageBundle\Security\Voter\DeviceVoter'
-        tags:
-            - { name: security.voter }
-
     ptrio_message.add_device_command:
         class: 'App\Ptrio\MessageBundle\Command\AddDeviceCommand'
         arguments:
             - '@ptrio_message.device_manager'
+            - '@ptrio_message.user_manager'
+        tags:
+            - { name: console.command }
+
+    ptrio_message.add_role_command:
+        class: 'App\Ptrio\MessageBundle\Command\AddRoleCommand'
+        arguments:
+            - '@ptrio_message.user_manager'
+        tags:
+            - { name: console.command }
+
+    ptrio_message.remove_role_command:
+        class: 'App\Ptrio\MessageBundle\Command\RemoveRoleCommand'
+        arguments:
             - '@ptrio_message.user_manager'
         tags:
             - { name: console.command }

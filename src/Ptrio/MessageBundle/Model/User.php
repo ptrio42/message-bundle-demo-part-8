@@ -20,6 +20,19 @@ abstract class User implements UserInterface
     protected $apiKey;
 
     /**
+     * @var array
+     */
+    protected $roles;
+
+    /**
+     * User constructor.
+     */
+    public function __construct()
+    {
+        $this->roles = [];
+    }
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -64,7 +77,7 @@ abstract class User implements UserInterface
      */
     public function getRoles(): array
     {
-        return ['ROLE_USER'];
+        return $this->roles;
     }
 
     /**
@@ -86,5 +99,25 @@ abstract class User implements UserInterface
      */
     public function eraseCredentials(): void
     {
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addRole(string $role)
+    {
+        if (!in_array(strtoupper($role), $this->getRoles())) {
+            $this->roles[] = $role;
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeRole(string $role)
+    {
+        if (false !== $key = array_search(strtoupper($role), $this->getRoles())) {
+            unset($this->roles[$key]);
+        }
     }
 }
