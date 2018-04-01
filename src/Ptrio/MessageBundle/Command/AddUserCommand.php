@@ -66,6 +66,7 @@ class AddUserCommand extends Command
             $user->setUsername($username);
             $apiKey = $this->tokenGenerator->generateToken();
             $user->setApiKey($apiKey);
+            $user->addRole($user::ROLE_USER);
             $this->userManager->updateUser($user);
 
             $output->writeln('User created successfully with the following api key: ' . $apiKey);
