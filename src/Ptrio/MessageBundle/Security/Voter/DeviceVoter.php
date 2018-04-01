@@ -5,10 +5,28 @@ namespace App\Ptrio\MessageBundle\Security\Voter;
 use App\Ptrio\MessageBundle\Model\DeviceInterface;
 use App\Ptrio\MessageBundle\Model\UserInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
 class DeviceVoter extends Voter
 {
+    /**
+     * @var AccessDecisionManagerInterface
+     */
+    private $decisionManager;
+
+    /**
+     * DeviceVoter constructor.
+     * @param AccessDecisionManagerInterface $decisionManager
+     */
+    public function __construct(
+        AccessDecisionManagerInterface $decisionManager
+    )
+    {
+        $this->decisionManager = $decisionManager;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -26,6 +44,10 @@ class DeviceVoter extends Voter
 
         if (!$user instanceof UserInterface) {
             return false;
+        }
+
+        if ($this->decisionManager->decide($token, [$user::ROLE_ADMIN])) {
+            return true;
         }
 
         /** @var DeviceInterface $device */

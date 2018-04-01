@@ -32,4 +32,9 @@ class User extends BaseUser
      * @Assert\NotBlank()
      */
     protected $apiKey;
+
+    /**
+     * @ORM\Column(type="array")
+     */
+    protected $roles;
 }

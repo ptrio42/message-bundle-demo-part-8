@@ -3,18 +3,17 @@
 namespace App\Ptrio\MessageBundle\Command;
 
 use App\Ptrio\MessageBundle\Model\UserManagerInterface;
-use App\Ptrio\MessageBundle\Util\TokenGeneratorInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class AddUserCommand extends Command
+class AddRoleCommand extends Command
 {
     /**
      * @var string
      */
-    public static $defaultName = 'ptrio:message:add-user';
+    public static $defaultName = 'ptrio:message:add-role';
 
     /**
      * @var UserManagerInterface
@@ -22,22 +21,14 @@ class AddUserCommand extends Command
     private $userManager;
 
     /**
-     * @var TokenGeneratorInterface
-     */
-    private $tokenGenerator;
-
-    /**
-     * AddUserCommand constructor.
+     * AddRoleCommand constructor.
      * @param UserManagerInterface $userManager
-     * @param TokenGeneratorInterface $tokenGenerator
      */
     public function __construct(
-        UserManagerInterface $userManager,
-        TokenGeneratorInterface $tokenGenerator
+        UserManagerInterface $userManager
     )
     {
         $this->userManager = $userManager;
-        $this->tokenGenerator = $tokenGenerator;
 
         parent::__construct();
     }
@@ -48,6 +39,7 @@ class AddUserCommand extends Command
     protected function configure()
     {
         $this->setDefinition([
+            new InputArgument('role', InputArgument::REQUIRED),
             new InputArgument('username', InputArgument::REQUIRED),
         ]);
     }
@@ -57,19 +49,16 @@ class AddUserCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $role = $input->getArgument('role');
         $username = $input->getArgument('username');
 
         if ($user = $this->userManager->findUserByUsername($username)) {
-            $output->writeln('User with a given username already exists.');
-        } else {
-            $user = $this->userManager->createUser();
-            $user->setUsername($username);
-            $apiKey = $this->tokenGenerator->generateToken();
-            $user->setApiKey($apiKey);
-            $user->addRole($user::ROLE_USER);
+            $user->addRole($role);
             $this->userManager->updateUser($user);
 
-            $output->writeln('User created successfully with the following api key: ' . $apiKey);
+            $output->writeln($role.' role has been added to user: '.$user->getUsername());
+        } else {
+            $output->writeln('The user with the given username cannot be found.');
         }
     }
 }
