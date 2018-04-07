@@ -10,6 +10,11 @@ abstract class Device implements DeviceInterface
 
     protected $token;
 
+    /**
+     * @var UserInterface|null
+     */
+    protected $user;
+
     public function getId(): int
     {
         return $this->id;
@@ -33,5 +38,21 @@ abstract class Device implements DeviceInterface
     public function setToken(?string $token)
     {
         $this->token = $token;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setUser(UserInterface $user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUser(): ?UserInterface
+    {
+        return $this->user;
     }
 }

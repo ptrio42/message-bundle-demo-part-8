@@ -98,3 +98,16 @@ services:
             - '@ptrio_message.user_manager'
         tags:
             - { name: console.command }
+
+    ptrio_message.device_voter:
+        class: 'App\Ptrio\MessageBundle\Security\Voter\DeviceVoter'
+        tags:
+            - { name: security.voter }
+
+    ptrio_message.add_device_command:
+        class: 'App\Ptrio\MessageBundle\Command\AddDeviceCommand'
+        arguments:
+            - '@ptrio_message.device_manager'
+            - '@ptrio_message.user_manager'
+        tags:
+            - { name: console.command }

@@ -13,4 +13,14 @@ interface DeviceInterface
     public function setToken(?string $token);
 
     public function getToken(): string;
+
+    /**
+     * @param UserInterface $user
+     */
+    public function setUser(UserInterface $user);
+
+    /**
+     * @return UserInterface|null
+     */
+    public function getUser(): ?UserInterface;
 }
