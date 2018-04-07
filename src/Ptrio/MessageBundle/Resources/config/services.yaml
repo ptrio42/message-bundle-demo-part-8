@@ -47,6 +47,7 @@ services:
         arguments:
             - '@doctrine.orm.entity_manager'
             - '%ptrio_message.model.message.class%'
+            - '@ptrio_message.message_repository'
 
     ptrio_message.list_device_messages_command:
         class: 'App\Ptrio\MessageBundle\Command\ListDeviceMessagesCommand'
@@ -127,3 +128,17 @@ services:
             - '@ptrio_message.user_manager'
         tags:
             - { name: console.command }
+
+    ptrio_message.message_repository:
+        class: 'App\Ptrio\MessageBundle\Repository\MessageRepository'
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '%ptrio_message.model.message.class%'
+
+    ptrio_message.message_controller:
+        class: 'App\Ptrio\MessageBundle\Controller\MessageController'
+        arguments:
+            - '@ptrio_message.device_manager'
+            - '@ptrio_message.message_manager'
+        tags:
+            - { name: controller.service_arguments }
