@@ -1,3 +1,16 @@
+Version 1.7.0:
+ - Merge branch 'dev' of github.com:ptrio42/message-bundle-demo-part-8 into dev
+ - Merge pull request #1 from ptrio42/queryable-messages-data-feature
+ - Merge branch 'release-1.6.0' into dev
+ - Update FOSRestBundle configuration
+ - Update routes
+ - Update service configuration
+ - Create MessageController class
+ - Update MessageManager concrete class
+ - Update MessageManager::findMessagesByDevice method declaration
+ - Add MessageRepository class
+ - Create MessageRepositoryInterface
+
 Version 1.6.0:
  - Merge branch 'dev' of github.com:ptrio42/message-bundle-demo-part-7 into dev
  - Merge pull request #1 from ptrio42/role-based-voter-feature
