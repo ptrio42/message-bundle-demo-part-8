@@ -2,3 +2,8 @@ device:
     type: rest
     prefix: /
     resource: 'ptrio_message.device_controller'
+
+message:
+    type: rest
+    parent: device
+    resource: 'ptrio_message.message_controller'
