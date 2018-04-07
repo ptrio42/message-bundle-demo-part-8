@@ -4,6 +4,7 @@ namespace App\Ptrio\MessageBundle\Doctrine;
 use App\Ptrio\MessageBundle\Model\DeviceInterface;
 use App\Ptrio\MessageBundle\Model\MessageInterface;
 use App\Ptrio\MessageBundle\Model\MessageManager as BaseMessageManager;
+use App\Ptrio\MessageBundle\Repository\MessageRepositoryInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
 class MessageManager extends BaseMessageManager
@@ -13,7 +14,7 @@ class MessageManager extends BaseMessageManager
      */
     private $objectManager;
     /**
-     * @var \Doctrine\Common\Persistence\ObjectRepository
+     * @var MessageRepositoryInterface
      */
     private $repository;
     /**
@@ -25,14 +26,16 @@ class MessageManager extends BaseMessageManager
      * MessageManager constructor.
      * @param ObjectManager $objectManager
      * @param string $class
+     * @param MessageRepositoryInterface $repository
      */
     public function __construct(
         ObjectManager $objectManager,
-        string $class
+        string $class,
+        MessageRepositoryInterface $repository
     )
     {
         $this->objectManager = $objectManager;
-        $this->repository = $objectManager->getRepository($class);
+        $this->repository = $repository;
         $metadata = $objectManager->getClassMetadata($class);
         $this->class = $metadata->getName();
     }
@@ -55,11 +58,10 @@ class MessageManager extends BaseMessageManager
     }
 
     /**
-     * @param DeviceInterface $device
-     * @return array
+     * {@inheritdoc}
      */
-    public function findMessagesByDevice(DeviceInterface $device): array
+    public function findMessagesByDevice(DeviceInterface $device, string $sort, int $offset, int $limit): array
     {
-        return $this->repository->findBy(['device' => $device]);
+        return $this->repository->findMessagesByDevice($device, $sort, $offset, $limit);
     }
 }
