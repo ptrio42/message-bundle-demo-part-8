@@ -1,3 +1,16 @@
+Version 1.6.0:
+ - Merge branch 'dev' of github.com:ptrio42/message-bundle-demo-part-7 into dev
+ - Merge pull request #1 from ptrio42/role-based-voter-feature
+ - Merge branch 'release-1.5.0' into dev
+ - Set default role on user creation
+ - Create RemoveRoleCommand
+ - Create AddRoleCommand
+ - Make changes to service configuration
+ - Update DeviceVoter class
+ - Add ORM mapping to User entity class
+ - Update base User class
+ - Add default roles as constants in UserInterface.php
+
 Version 1.5.0:
  - Merge branch 'device-voter-feature' into dev
  - Adjust services.yaml file.
